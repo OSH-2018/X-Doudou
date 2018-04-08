@@ -1,97 +1,6 @@
 # 调研报告
 
-- [调研报告](#----)
-  * [小组成员](#----)
-  * [项目简介](#----)
-  * [项目背景](#----)
-    + [从传统虚拟化到容器化](#----------)
-      - [传统虚拟化技术](#-------)
-        * [虚拟化对象与层次](#--------)
-        * [虚拟化技术](#-----)
-      - [容器化技术](#-----)
-        * [产生](#--)
-        * [解决的问题](#-----)
-        * [发展现状](#----)
-        * [应用场景](#----)
-    + [容器化技术的代表：Docker](#---------docker)
-      - [Docker 的架构](#docker----)
-        * [Docker daemon](#docker-daemon)
-        * [Docker client](#docker-client)
-        * [Docker registries](#docker-registries)
-        * [Docker objects](#docker-objects)
-          + [Images 镜像](#images---)
-          + [Containers 容器](#containers---)
-          + [Services 服务](#services---)
-        * [Underlying technology](#underlying-technology)
-          + [Namespaces](#namespaces)
-          + [Control groups](#control-groups)
-          + [Union file systems](#union-file-systems)
-      - [Docker 的使用](#docker----)
-        * [验证安装](#----)
-        * [启动和停止](#-----)
-        * [管理镜像](#----)
-        * [拉取镜像](#----)
-        * [运行镜像](#----)
-        * [终止容器](#----)
-        * [管理容器](#----)
-      - [Docker 的基础技术：cgroups](#docker-------cgroups)
-        * [功能](#--)
-        * [术语](#--)
-        * [主要子系统](#-----)
-        * [实现](#--)
-        * [现状](#--)
-      - [Docker 的基础技术：namespace](#docker-------namespace)
-        * [chroot 与 Namespace](#chroot---namespace)
-        * [Linux Namespace 种类](#linux-namespace---)
-          + [mount Namespace](#mount-namespace)
-          + [Network Namespace](#network-namespace)
-          + [PID Namespace](#pid-namespace)
-          + [IPC Namespace](#ipc-namespace)
-          + [UTS Namespace](#uts-namespace)
-          + [User Namespace](#user-namespace)
-        * [Namespace API](#namespace-api)
-          + [clone()](#clone--)
-          + [/proc/PID/ns 文件](#-proc-pid-ns---)
-          + [setns()](#setns--)
-          + [unshare()](#unshare--)
-    + [容器化遇到的问题](#--------)
-      - [性能的进一步提升](#--------)
-        * [计算能力](#----)
-        * [内存访问效率](#------)
-        * [启动时间](#----)
-        * [网络性能](#----)
-        * [存储性能](#----)
-        * [小结](#--)
-      - [容器的安全性](#------)
-        * [容器逃逸](#----)
-        * [信息泄漏](#----)
-        * [相关管理软件的安全问题](#-----------)
-  * [前瞻性及重要性](#-------)
-  * [相关工作](#----)
-    + [Unikernel](#unikernel)
-      - [Unikernel 的优点](#unikernel----)
-        * [充分发挥现代虚拟机技术的优势](#--------------)
-          + [比传统操作系统更高的运行性能](#--------------)
-          + [运行微服务时非常高的资源利用效率](#----------------)
-          + [隔离性和安全性非常好](#----------)
-          + [可伸缩性很强](#------)
-          + [可迁移性很强](#------)
-        * [有效降低应用开发工作的复杂度](#--------------)
-        * [有效降低运维工作的复杂度](#------------)
-      - [Unikernel 的缺点](#unikernel----)
-      - [Unikernel 相比 Traditional OS](#unikernel----traditional-os)
-      - [Unikernel 相比 KVM](#unikernel----kvm)
-      - [Unikernel 相比 Docker](#unikernel----docker)
-      - [Unikernel 的运行环境](#unikernel------)
-    + [CoreOS](#coreos)
-      - [更新机制](#----)
-      - [更新策略](#----)
-      - [运行环境](#----)
-      - [集群发现](#----)
-      - [集群调度](#----)
-      - [生态支持](#----)
-
-## 小组成员
+[TOC]
 
 邓胜亮
 
@@ -615,7 +524,27 @@ Docker 配套的管理工具也出现过很多问题，最著名的是：`Docker
 
 ## 前瞻性及重要性
 
-//我们的项目是。。。。
+该项目通过对操作系统及相关软件的修改与集成，实现 Docker 在物理机直接装载运行，从而可以在依托 Docker 原有的成熟丰富的生态环境、保持用户接口不变、不借助其他虚拟化技术的前提下，获得更大的计算性能、存取性能和网络性能优化空间、简化部署流程、降低运维成本、获得更高的安全性与隔离性，应对复杂多变的业务情景，更易实现弹性伸缩的目标，并尝试支持多种处理器架构。
+
+### 保留容器化技术的优势
+
+该项目完全保留了原有容器化技术的特点，依托 Docker 原有的成熟丰富的生态环境、保持用户接口不变，学习成本低，原有的 Docker 上的解决方案可以继续使用。
+
+### 取得更大的优化空间
+
+在我们调研的相关工作中可以发现 Unikernel 等高度专能化系统中应用程序往往能发挥出更强大的性能，该项目通过操作系统级别的修改和相关软件的集成，可以在计算性能、存取性能和网络性能拥有更大的优化空间。
+
+### 降低运维成本
+
+使用物理机器直接装载并运行容器，可以兼容目前现有的云计算管理体系，可以很方便的做到分发启动，配合相关的管理软件，可以大幅度降低运维成本。
+
+### 更高的安全性和隔离性
+
+以物理机器作为容器中不同应用程序的隔离，相比原有的体系，安全性和隔离性都更高。
+
+### 多架构支持
+
+本项目的另一个目的是针对多架构进行支持，希望我们的技术能够在多种处理器架构的机器上直接运行，进一步发挥容器化技术的优势。
 
 ## 相关工作
 
@@ -673,7 +602,7 @@ Docker 里面虽然大多数情况只跑一个程序，但是里面含有其它 
 
 应用开发者可以完全使用高级语言进行开发工作，无需研究底层代码，也不用研究硬件协议。
 
-![MirageOS](mages/image_mirage_01.png)
+![MirageOS](images/image_mirage_01.png)
 
 
 
