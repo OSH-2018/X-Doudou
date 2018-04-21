@@ -2,15 +2,15 @@
 
 ## 小组成员
 
-何纪言 @volltin
+何纪言 [@volltin](https://github.com/volltin)
 
-邓胜亮 @ShengliangD
+邓胜亮 [@ShengliangD](https://github.com/ShengliangD)
 
-缑慧星 @Qingqingran
+缑慧星 [@Qingqingran](https://github.com/Qingqingran)
 
-赵敏帆 @MinfanZhao
+赵敏帆 [@MinfanZhao](https://github.com/MinfanZhao)
 
-曾明亮 @mlzeng
+曾明亮 [@mlzeng](https://github.com/mlzeng)
 
 ## 调研报告
 
