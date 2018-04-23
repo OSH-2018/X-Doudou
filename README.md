@@ -14,11 +14,11 @@
 
 ## 调研报告
 
-[调研报告](research-report)
+[调研报告](research-report/README.md) ([PDF](research-report/README.pdf))
 
 ## 可行性报告
 
-[可行性报告](feasibility-report)
+[可行性报告](feasibility-report/README.md) ([PDF](feasibility-report/README.pdf))
 
 ## 小组会议讨论纪要
 
