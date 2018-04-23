@@ -1,7 +1,3 @@
----
-typora-copy-images-to: images
----
-
 # 可行性报告
 
 - [可行性报告](#)
