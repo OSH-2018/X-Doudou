@@ -22,4 +22,4 @@
 
 ## 小组会议讨论纪要
 
-[讨论纪要](discuss)
+[讨论纪要](discuss/README.md)
