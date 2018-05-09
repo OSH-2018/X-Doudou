@@ -20,6 +20,9 @@
 
 [可行性报告](feasibility-report/README.md) ([PDF](feasibility-report/README.pdf))
 
+## 中期报告
+[中期报告](mid-term-report/) ([PDF](mid-term-report/cunik.pdf))
+
 ## 小组会议讨论纪要
 
 [讨论纪要](discuss/README.md)
