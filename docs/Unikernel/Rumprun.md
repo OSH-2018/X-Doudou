@@ -5,6 +5,9 @@ $ git clone http://repo.rumpkernel.org/rumprun
 $ cd rumprun
 $ git submodule update --init  # 炒鸡慢
 $ CC=cc ./build-rr.sh hw  # hw for KVM，xen for Xen，在实验室服务器上出现 machine/cdefs.h 找不到的问题，在 bwg 和超算练习服务器上正常
+# 用 gcc 6.1.x 也会有问题，fix：
+# CXX=false ./build-rr.sh hw
+# 提示：可以用 -j <num> 多线程构建
 
 $ export PATH="${PATH}:$(pwd)/rumprun/rumprun/bin"
 ```
