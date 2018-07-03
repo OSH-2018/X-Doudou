@@ -38,7 +38,7 @@ Cunik-engine 是 Cunik 项目的核心部分，我们通过 Cunik-engine 处理�
 
 ### Cunik-engine 构成
 
-![cunik-engine](images\cunik-engine.png)
+![cunik-engine](./images/cunik-engine.png)
 
 #### Cunik API
 
