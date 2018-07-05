@@ -185,14 +185,34 @@ libvert 提供了一些管理虚拟机的接口，但要融入到 Cunik 项目�
 
 # 前景展望
 
-由于本学期时间紧迫，当前我们只实现了对 kvm/qemu 虚拟机、Rumprun 和 OSv 两种 Unikernel 实现的简单支持。之后我们可以做以下工作：
+由于本学期时间紧迫，当前我们只实现了对 kvm/qemu 虚拟机、Rumprun 和 OSv 两种 Unikernel 实现的简单支持。之后我们将做以下工作来拓展我们的项目：
 
 * 修复一些已知 bug；
 * 整理当前 Cunik-engine 的架构；
 * 实现对更多虚拟机平台以及 Unikernel 实现的支持；
 * 完成其他初期工作，编写更好的文档，吸引开源社区加入我们的开发；
-* 完成对 Cunik-Hub、Cunik-Compose 的搭建。
+* 完成对 Cunik-Hub、Cunik-Compose 的搭建；
 * 持续支持新的 Unikernel 实现，并加入更多方便镜像打包与应用部署的特性，使其能够满足生产环境的需要。
 
-我们可以设想，随着具体技术的成熟，Unikernel 这一新兴的富有前景的技术将在 Cunik 的帮助下获得广泛应用，改变现有云服务的架构，降低运行成本，并提高生产效率。
+其中，Cunik-Hub 和 Cunik-Compose 的搭建将是我们的重点。
+
+## Cunik-Hub
+
+![cunik-Hub](./images/cunik-Hub.png)
+
+目前，想要启动一个新的 Cunik 应用，需要自行编译生成相应的镜像，并经过适当的修改，最后加入到 image-registry 中。这个过程稍显复杂，为了使得 Cunik 更加方便，我们将在之后构建 Cunik-Hub，上传一些由我们生成好的 Cunik-image，并鼓励更多的开发者加入其中，贡献自己的 Cunik-image。
+
+在 Cunik-Hub 搭建完成后，用户只需要从 Cunik-Hub 中 pull 自己所需的 Cunik-image，无需经过繁琐的编译、修改等步骤，即可轻松启动 Cunik 应用。真正享受 Unikernel 技术的乐趣和 Cunik 项目所带来的生产力的提高。
+
+## Cunik-Compose
+
+![Cunik-Compose](./images/Cunik-Compose.png)
+
+Cunik-Compose 是我们的远期计划。
+
+我们希望通过 Cunik-Compose，能够实现在用户发出 Request 后，自动为用户选择最合适的一系列 Cunik 应用，达成从前端到后端的一键式搭建服务。
+
+## 我们的愿景
+
+我们希望，通过 Cunik 项目，开发出 Unikernel 技术的真正价值，使得 Unikernel 这一新兴的富有前景的技术实现从技术到生产力的飞跃，并改变现有的云服务架构，降低运行成本，提高生产效率。
 
