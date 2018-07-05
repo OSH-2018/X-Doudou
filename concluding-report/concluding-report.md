@@ -94,11 +94,13 @@ Cunik 项目为 Cunik-engine 配置了命令行界面，支持 `list`、`stop`�
 - 项目构思与相关知识积累；
 - 具体实现及代码编写。
 
-## 项目构思与相关知识积累
+## 项目构思
 
-### 构思 Cunik 项目的架构
+### 构思、设计 Cunik 项目的架构
 
 在先期对 Unikernel 技术和 Docker 技术调研的基础上，小组成员们研究了 Docker 的构架以及各类现有 Unikernel 项目。在此基础上，提出了基于 Cunik-engine、Cunik-cli，并拓展出 Cunik-Hub 和 Cunik-Compose 的 Cunik 项目总体架构，并细化了 Cunik-engine、Cunik-cli 的实现方式。
+
+## 相关知识积累
 
 ### 学习 Rumprun 和 OSv 两种 Unikernel 实现的使用方法
 
@@ -111,6 +113,25 @@ Cunik 项目为 Cunik-engine 配置了命令行界面，支持 `list`、`stop`�
 鉴于 libvert 提供了便捷且功能强大的虚拟机管理工具，项目小组决定基于 libvert 构建 Cunik-engine 的 VM Backends 和 VM Hypervisor 部分。
 
 因此，小组成员学习了 libvert 的相关知识，阅读了相关代码，并各自使用了 libvert。
+
+## Cunik 核心组件的设计
+
+### Image
+
+Image 代表一个已经构建好、可以直接部署的 Unikernel 应用，主要包含一些元信息、Unikernel 镜像、默认配置、根文件系统等。不同的 Unikernel 实现有不同的提供镜像、根文件系统的方式，例如：
+
+* Rumprun 提供单独的内核镜像，提供 ISO 格式的默认根文件系统，启动参数可以直接通过 qemu 传递；
+* OSv 提供一个 qcow2 格式的虚拟磁盘，其中包含内核镜像、根文件系统和启动命令行相关文件，启动参数需通过 OSv 提供的脚本修改虚拟磁盘进行指定。
+
+具体的实现将随着后期的需要而发生变更，因此在此不做赘述。
+
+### Image Registry
+
+Image Registry 是本地的镜像仓库，用于管理本地的所有镜像。
+
+### Cunik Registry
+
+Cunik Registry 保存当前存在的所有运行中的镜像（Cunik）的相关信息。
 
 ## 具体实现及代码编写
 
@@ -131,6 +152,10 @@ libvert 提供了一些管理虚拟机的接口，但要融入到 Cunik 项目�
 ### 编写 Cunik-cli
 
 为了方便用户使用 Cunik，我们为其编写了 Cunik-cli，根据 Cunik-engine 的功能，实现对 `list`、`stop`、`remove`、`creat`、`help`、`info`、`strat` 等命令的支持。
+
+## 本地测试
+
+我们在测试机器上启动了 Cunik-engine，使用 Cunil-cli 启动了 nginx(Rumprun)、redis(Rumprun) 和 redis(OSv) 三种应用并成功访问它们提供的服务，并对 redis 这一应用的性能进行了比较，结果见“结果展示”一节。
 
 # 完成情况
 
