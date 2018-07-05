@@ -1,9 +1,6 @@
-[submodule "Cunik/Cunik-engine"]
+[submodule "src/Cunik-engine"]
 	path = Cunik/Cunik-engine
 	url = git@github.com:Cunik/Cunik-engine.git
-[submodule "src/Cunik-engine"]
-	path = src/Cunik-engine
-	url = git@github.com:Cunik/Cunik-engine.git
 [submodule "src/Cunik-cli"]
-	path = src/Cunik-cli
+	path = Cunik/Cunik-cli
 	url = git@github.com:Cunik/Cunik-cli.git
