@@ -70,7 +70,7 @@ Unikernel Backends 部分将会为不同的 Cunik Objects 选择合适的 Uniker
 
 VM Hypervisor 会接收 VM Backends 生成的 VM Config，然后选择合适的虚拟机来运行 Unikernel 应用。
 
-由于 libvert 提供了虚拟机管理工具，我们选择了使用 libvert 来完成这一任务。
+由于 libvirt 提供了虚拟机管理工具，我们选择了使用 libvirt 来完成这一任务。
 
 目前实现了对 KVM、QEMU 的支持，并将在日后实现对 Xen 等其他虚拟机的支持。
 
@@ -110,9 +110,9 @@ Cunik 项目为 Cunik-engine 配置了命令行界面，支持 `list`、`stop`�
 
 ### 学习使用 libvirt 管理虚拟机
 
-鉴于 libvert 提供了便捷且功能强大的虚拟机管理工具，项目小组决定基于 libvert 构建 Cunik-engine 的 VM Backends 和 VM Hypervisor 部分。
+鉴于 libvirt 提供了便捷且功能强大的虚拟机管理工具，项目小组决定基于 libvirt 构建 Cunik-engine 的 VM Backends 和 VM Hypervisor 部分。
 
-因此，小组成员学习了 libvert 的相关知识，阅读了相关代码，并各自使用了 libvert。
+因此，小组成员学习了 libvirt 的相关知识，阅读了相关代码，并各自使用了 libvirt。
 
 ## Cunik 核心组件的设计
 
@@ -139,7 +139,7 @@ Cunik Registry 保存当前存在的所有运行中的镜像（Cunik）的相关
 
 ### 封装 libvirt 提供的接口，作为我们的虚拟机后端
 
-libvert 提供了一些管理虚拟机的接口，但要融入到 Cunik 项目中，需要对其进行一些改进和封装。项目小组首先完成了这部分工作，以定义出属于 Cunik 项目的接口，方便后续的开发。
+libvirt 提供了一些管理虚拟机的接口，但要融入到 Cunik 项目中，需要对其进行一些改进和封装。项目小组首先完成了这部分工作，以定义出属于 Cunik 项目的接口，方便后续的开发。
 
 ### 编写 Rumprun、OSv 后端
 
